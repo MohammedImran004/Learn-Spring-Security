@@ -17,8 +17,8 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
-// @Configuration
-public class basicSecurityAuthentication {
+@Configuration
+public class jwtSecurityAuthentication {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
@@ -36,6 +36,8 @@ public class basicSecurityAuthentication {
         http.httpBasic();
         http.csrf().disable();
         http.headers().frameOptions().sameOrigin();
+        http.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
+    
         return http.build();
     }
 
